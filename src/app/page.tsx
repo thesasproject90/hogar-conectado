@@ -3,9 +3,6 @@ import Navbar from '../components/Navbar';
 import Link from 'next/link';
 
 export default function Home() {
-  // Tomamos el primer producto para la sección destacada
-  const destacado = productos[0];
-
   return (
     <main className="min-h-screen">
       <Navbar />
@@ -66,15 +63,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. THE SELECTION (PRODUCTOS) */}
+      {/* 4. THE SELECTION (CORREGIDO EL ÍNDICE /01, /02...) */}
       <section id="productos" className="max-w-7xl mx-auto px-6 py-32">
         <div className="mb-20 flex justify-between items-baseline border-b border-slate-100 pb-8">
           <h2 className="text-sm font-black uppercase tracking-[0.3em] text-slate-400">The 2026 Collection</h2>
-          <span className="text-sm font-medium italic text-slate-400">Available Analyses</span>
+          <span className="text-sm font-medium italic text-slate-400">{productos.length} Selected Objects</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
-          {productos.map((p) => (
+          {productos.map((p, index) => (
             <article key={p.id} className="group">
               <Link href={`/productos/${p.id}`} className="block aspect-[4/5] bg-[#f5f5f5] overflow-hidden relative rounded-sm">
                 <img 
@@ -92,11 +89,14 @@ export default function Home() {
               <div className="mt-8">
                 <div className="flex justify-between items-start mb-4">
                   <Link href={`/productos/${p.id}`}>
-                    <h3 className="text-3xl font-bold tracking-tighter group-hover:text-brand transition-colors">
+                    <h3 className="text-3xl font-bold tracking-tighter group-hover:text-brand transition-colors leading-none">
                       {p.nombre}
                     </h3>
                   </Link>
-                  <span className="text-xl font-black tracking-tighter text-slate-300">/0{p.id}</span>
+                  {/* AQUÍ LA CORRECCIÓN: Muestra /01, /02, etc basándose en el orden */}
+                  <span className="text-xl font-black tracking-tighter text-slate-300">
+                    /{index + 1 < 10 ? `0${index + 1}` : index + 1}
+                  </span>
                 </div>
                 <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-2">
                   {p.descripcion}
@@ -115,7 +115,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. NEWSLETTER EDITORIAL */}
+      {/* 5. NEWSLETTER */}
       <section className="py-40 px-6 bg-[#0a0a0a] text-white">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-brand font-bold uppercase tracking-[0.4em] text-[10px]">The Journal</span>
@@ -136,11 +136,9 @@ export default function Home() {
       </section>
 
       <footer className="py-12 px-6 bg-[#0a0a0a] border-t border-slate-900">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500">
-            Hogar Conectado © 2026
-          </div>
-          <div className="flex gap-12 text-[10px] font-black uppercase tracking-widest text-slate-500">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500">
+          <div>Hogar Conectado © 2026</div>
+          <div className="flex gap-12 text-slate-500">
             <Link href="/" className="hover:text-white">Index</Link>
             <Link href="/blog" className="hover:text-white">Journal</Link>
             <Link href="/aviso-legal" className="hover:text-white">Legal</Link>
