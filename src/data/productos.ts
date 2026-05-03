@@ -7,6 +7,7 @@ export interface Producto {
   linkAmazon: string;
   linkOpiniones: string;
   categoria: 'trabajo' | 'salon' | 'cocina';
+  rating: number; // Añadimos esto para que no de error
 }
 
 export const productos: Producto[] = [
@@ -18,7 +19,8 @@ export const productos: Producto[] = [
     imagenUrl: 'https://m.media-amazon.com/images/I/712X4tzCUrL._AC_SL1500_.jpg',
     linkAmazon: 'https://amzn.to/4bcLqgW',
     linkOpiniones: 'https://amzn.to/4bcLqgW',
-    categoria: 'trabajo'
-  },
-  // Añade aquí más productos y asígnales una categoría
+    categoria: 'trabajo',
+    rating: 5 // Nota máxima
+  }
+  // Si tienes más productos, asegúrate de ponerles un rating (ej: 4.5 o 5)
 ];
