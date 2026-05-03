@@ -1,47 +1,49 @@
-import { posts } from '../../../data/blog'
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import Navbar from '../../../components/Navbar'
+'use client';
+import { posts } from '../../../data/blog';
+import { notFound } from 'next/navigation';
+import { use } from 'react';
+import Navbar from '../../../components/Navbar';
+import Link from 'next/link';
 
-export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
-  const post = posts.find((x) => x.id === id)
-  if (!post) notFound()
+export default function PostPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const post = posts.find((p) => p.id === id);
+
+  if (!post) notFound();
 
   return (
-    <main style={{ backgroundColor: 'var(--cream)' }}>
+    <main className="min-h-screen bg-white">
       <Navbar />
-      <section className="pt-32 pb-0 px-6" style={{ backgroundColor: 'var(--night)' }}>
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-4 mb-8"><span className="badge">Artículo</span><span className="text-xs uppercase tracking-widest" style={{ color: 'var(--mist)', fontFamily: 'var(--font-display)' }}>{post.fecha}</span></div>
-          <h1 className="text-4xl md:text-6xl tracking-tighter leading-tight pb-14" style={{ color: 'var(--cream)', fontFamily: 'var(--font-display)' }}>{post.titulo}</h1>
-        </div>
-      </section>
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="w-full overflow-hidden" style={{ height: '360px', border: '1px solid var(--mist)', borderTop: 'none' }}>
-          <img src={post.imagen} alt={post.titulo} className="w-full h-full object-cover" />
-        </div>
-      </div>
-      <section className="max-w-4xl mx-auto px-6 py-16">
-        <p className="text-xl md:text-2xl leading-relaxed mb-12 pb-12" style={{ color: 'var(--night)', fontFamily: 'var(--font-body)', fontWeight: 300, borderBottom: '1px solid var(--mist)' }}>{post.resumen}</p>
-        <div className="text-base leading-loose" style={{ color: 'var(--ink)', fontFamily: 'var(--font-body)' }}>
-          {post.contenido.split('\n').map((parrafo, i) => parrafo.trim() ? (<p key={i} className="mb-6">{parrafo}</p>) : null)}
-        </div>
-        <div className="mt-16 pt-10 flex items-center justify-between" style={{ borderTop: '1px solid var(--mist)' }}>
-          <Link href="/blog" className="text-xs uppercase tracking-widest transition-colors" style={{ color: 'var(--ink)', fontFamily: 'var(--font-display)' }}>← Volver al Journal</Link>
-          <div className="divider-amber" />
-        </div>
-      </section>
-      <footer className="py-16 px-6" style={{ backgroundColor: 'var(--night)', borderTop: '1px solid rgba(232,197,71,0.15)' }}>
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-xl font-800 tracking-tighter" style={{ fontFamily: 'var(--font-display)', color: 'var(--cream)' }}>HOGAR<span style={{ color: 'var(--amber)' }}>.</span><span style={{ fontWeight: 300 }}>conectado</span></span>
-          <div className="flex items-center gap-6 text-xs uppercase tracking-widest" style={{ color: 'var(--mist)', fontFamily: 'var(--font-display)' }}>
-            <Link href="/" className="hover:text-amber">Catálogo</Link>
-            <Link href="/aviso-legal">Aviso legal</Link>
-            <span style={{ color: 'var(--amber)' }}>© 2026</span>
+      <article className="pt-32 pb-20 px-4 max-w-3xl mx-auto">
+        <Link href="/blog" className="text-blue-600 font-bold text-xs uppercase tracking-widest mb-8 inline-block hover:underline">
+          ← Volver al blog
+        </Link>
+        
+        <header className="mb-12">
+          <p className="text-gray-400 text-sm mb-4">{post.fecha}</p>
+          <h1 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-8">
+            {post.titulo}
+          </h1>
+          <div className="rounded-[2.5rem] overflow-hidden bg-gray-100 aspect-video mb-12 shadow-2xl">
+            <img src={post.imagen} alt={post.titulo} className="w-full h-full object-cover" />
           </div>
+        </header>
+
+        <div className="prose prose-lg prose-blue text-gray-600 leading-relaxed italic">
+          {post.contenido}
+          <p className="mt-8 not-italic font-medium text-gray-900">
+            En Hogar Conectado creemos que la tecnología debe facilitarte la vida, no complicarla. Por eso, siempre recomendamos productos que hemos analizado a fondo.
+          </p>
         </div>
-      </footer>
+        
+        <div className="mt-16 p-8 bg-blue-50 rounded-3xl border border-blue-100">
+          <h3 className="font-black text-blue-900 mb-2">¿Te ha gustado este análisis?</h3>
+          <p className="text-blue-800 text-sm mb-4">Echa un vistazo a nuestra selección de productos destacados en la tienda.</p>
+          <Link href="/" className="inline-block bg-blue-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors">
+            Ver productos
+          </Link>
+        </div>
+      </article>
     </main>
-  )
+  );
 }
