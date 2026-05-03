@@ -1,46 +1,42 @@
 import { productos } from '../data/productos';
-import Navbar from '../components/Navbar';
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
-      <Navbar />
-      
-      <section className="pt-32 pb-16 px-4 bg-slate-50 border-b border-gray-100 text-center">
-        <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-4">
-          Hogar <span className="text-brand">Conectado</span>
+    <main className="min-h-screen bg-gray-50 pb-12">
+      <header className="bg-white shadow-sm pt-16 pb-12 px-4 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+          Hogar <span className="text-blue-600">Conectado</span>
         </h1>
-        <p className="text-lg text-slate-600 mb-8">Análisis independientes de tecnología útil.</p>
-        <Link href="/#productos" className="bg-brand text-white px-8 py-3 rounded-full font-bold inline-block">Ver Catálogo</Link>
-      </section>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          La mejor selección de domótica para tu hogar inteligente.
+        </p>
+      </header>
 
-      <section id="productos" className="max-w-7xl mx-auto px-4 py-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {productos.map((p) => (
-            <div key={p.id} className="group border border-gray-100 rounded-2xl p-4 flex flex-col">
-              {/* Imagen con LINK y ZOOM */}
-              <Link href={`/productos/${p.id}`} className="aspect-square bg-gray-50 rounded-xl overflow-hidden mb-4 block">
-                <img src={p.imagenUrl} alt={p.nombre} className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-125" />
-              </Link>
-              
-              {/* Nombre con LINK */}
+            <article key={p.id} className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow border border-gray-100">
               <Link href={`/productos/${p.id}`}>
-                <h3 className="font-bold text-xl text-slate-900 hover:text-brand transition-colors mb-2">{p.nombre}</h3>
+                <img src={p.imagenUrl} alt={p.nombre} className="w-full h-56 object-cover cursor-pointer hover:opacity-90 transition-opacity" />
               </Link>
-
-              <p className="text-slate-500 text-sm line-clamp-2 mb-4">{p.descripcion}</p>
-              
-              <div className="mt-auto flex items-center justify-between">
-                <span className="font-black text-lg">{p.precio}</span>
-                {/* Botón con LINK a AMAZON */}
-                <a href={p.linkAmazon} target="_blank" className="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-brand">Consultar Precio</a>
+              <div className="p-6">
+                <h2 className="text-xl font-bold text-gray-900 mb-2">{p.nombre}</h2>
+                <p className="text-gray-600 mb-4 line-clamp-2 text-sm">{p.descripcion}</p>
+                <div className="flex items-center justify-between mt-6">
+                  <span className="text-2xl font-extrabold text-gray-900">{p.precio}</span>
+                  <Link 
+                    href={`/productos/${p.id}`}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Detalles
+                  </Link>
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </section>
-      <footer className="py-10 text-center border-t border-gray-100 text-slate-400 text-sm">© 2026 Hogar Conectado</footer>
     </main>
   );
 }
