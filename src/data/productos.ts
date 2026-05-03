@@ -5,23 +5,23 @@ export interface Producto {
   precio: string;
   imagenUrl: string;
   linkAmazon: string;
-  linkOpiniones: string;
-  rating: number;
-  opiniones: number;
-  esTop: boolean;
 }
 
 export const productos: Producto[] = [
   {
-    id: "steelseries-arctis-nova-pro",
-    nombre: "SteelSeries Arctis Nova Pro Wireless",
-    descripcion: "Sistema acústico Nova Pro con transductores premium de alta fidelidad. Cancelación activa de ruido (ANC) y sistema de doble batería intercambiable para jugar sin límites.",
-    precio: "Consultar precio",
-    imagenUrl: "https://m.media-amazon.com/images/I/712X4tzCUrL._AC_SL1500_.jpg",
-    linkAmazon: "https://www.amazon.es/dp/B09ZLS8LB3/",
-    linkOpiniones: "https://www.amazon.es/reviews/B09ZLS8LB3/",
-    rating: 4.5,
-    opiniones: 3850,
-    esTop: true
+    id: "echo-dot-5",
+    nombre: "Echo Dot (5.ª generación)",
+    descripcion: "El altavoz inteligente más popular.",
+    precio: "64,99 €",
+    imagenUrl: "https://images.unsplash.com/photo-1543512214-318c7553f230?q=80&w=600&auto=format&fit=crop", 
+    linkAmazon: "https://www.amazon.es/dp/B09B8W5FW7?tag=TU_TAG-21"
+  },
+  {
+    id: "bombilla-philips",
+    nombre: "Philips Hue Bombilla",
+    descripcion: "Controla las luces desde tu móvil.",
+    precio: "49,99 €",
+    imagenUrl: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=600&auto=format&fit=crop",
+    linkAmazon: "https://www.amazon.es/dp/B088CS6G99?tag=TU_TAG-21"
   }
 ];
