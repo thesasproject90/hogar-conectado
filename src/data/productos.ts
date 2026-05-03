@@ -6,22 +6,19 @@ export interface Producto {
   imagenUrl: string;
   linkAmazon: string;
   linkOpiniones: string;
-  rating: number;
-  opiniones: number;
-  esTop: boolean;
+  categoria: 'trabajo' | 'salon' | 'cocina';
 }
 
 export const productos: Producto[] = [
   {
-    id: "steelseries-arctis-nova-pro",
-    nombre: "SteelSeries Arctis Nova Pro Wireless",
-    descripcion: "Sistema acústico Nova Pro con transductores premium de alta fidelidad. Cancelación activa de ruido (ANC) y sistema de doble batería intercambiable para jugar sin límites.",
-    precio: "Consultar precio",
-    imagenUrl: "https://m.media-amazon.com/images/I/712X4tzCUrL._AC_SL1500_.jpg",
-    linkAmazon: "https://www.amazon.es/dp/B09ZLS8LB3/",
-    linkOpiniones: "https://www.amazon.es/product-reviews/B09ZLS8LB3/",
-    rating: 4.5,
-    opiniones: 3850,
-    esTop: true
-  }
+    id: 'steelseries-arctis-nova-pro',
+    nombre: 'SteelSeries Arctis Nova Pro Wireless',
+    descripcion: 'El estándar de oro en audio inalámbrico para entusiastas. Cancelación de ruido activa, sistema de batería dual intercambiable y una fidelidad sonora que redefine el juego y la productividad.',
+    precio: '349,99€',
+    imagenUrl: 'https://m.media-amazon.com/images/I/712X4tzCUrL._AC_SL1500_.jpg',
+    linkAmazon: 'https://amzn.to/4bcLqgW',
+    linkOpiniones: 'https://amzn.to/4bcLqgW',
+    categoria: 'trabajo'
+  },
+  // Añade aquí más productos y asígnales una categoría
 ];
