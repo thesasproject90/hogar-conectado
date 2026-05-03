@@ -7,9 +7,13 @@ export default function Navbar() {
         <Link href="/" className="text-xl font-black tracking-tighter text-blue-600 italic">
           HOGAR<span className="text-gray-900">CONECTADO</span>
         </Link>
-        <div className="flex gap-6 text-sm font-medium text-gray-600">
-          <Link href="/" className="hover:text-blue-600 transition-colors">Inicio</Link>
-          <Link href="/aviso-legal" className="hover:text-blue-600 transition-colors italic opacity-70 text-xs">Legal</Link>
+        <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
+          <Link href="/" className="hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 py-1">
+            Inicio
+          </Link>
+          <Link href="/aviso-legal" className="text-xs text-gray-400 hover:text-blue-600 transition-colors uppercase tracking-widest">
+            Aviso Legal
+          </Link>
         </div>
       </div>
     </nav>
