@@ -13,16 +13,21 @@ body {
   background-color: var(--cream);
   color: var(--night);
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
-/* Efecto para el botón que aparece al hacer hover */
 .reveal-button {
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .group:hover .reveal-button {
   opacity: 1;
   transform: translateY(0);
+}
+
+::selection {
+  background-color: var(--brand);
+  color: white;
 }
