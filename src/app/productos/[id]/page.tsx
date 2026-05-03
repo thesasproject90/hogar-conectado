@@ -17,12 +17,8 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
       <Navbar />
       
       {isZoomed && (
-        <div 
-          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
-          onClick={() => setIsZoomed(false)}
-        >
-          <img src={p.imagenUrl} alt={p.nombre} className="max-w-full max-h-full object-contain shadow-2xl" />
-          <button className="absolute top-6 right-6 text-white text-4xl">&times;</button>
+        <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out" onClick={() => setIsZoomed(false)}>
+          <img src={p.imagenUrl} alt={p.nombre} className="max-w-full max-h-full object-contain" />
         </div>
       )}
 
@@ -34,28 +30,23 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div className="relative group cursor-zoom-in" onClick={() => setIsZoomed(true)}>
             <div className="bg-gray-50 rounded-[2rem] p-8 flex items-center justify-center border border-gray-100 overflow-hidden">
-              <img 
-                src={p.imagenUrl} 
-                alt={p.nombre} 
-                className="max-h-[500px] object-contain transition-transform duration-500 group-hover:scale-105" 
-              />
+              <img src={p.imagenUrl} alt={p.nombre} className="max-h-[500px] object-contain transition-transform duration-500 group-hover:scale-105" />
             </div>
           </div>
-
           <div className="flex flex-col">
             <h1 className="text-4xl font-black text-gray-900 mb-4 leading-tight">{p.nombre}</h1>
             
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex text-yellow-400">{"★".repeat(Math.floor(p.rating))}</div>
-              <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">{p.opiniones.toLocaleString()} Opiniones</span>
-            </div>
+            <a href={p.linkOpiniones} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 mb-6 group/stars">
+              <div className="flex text-yellow-400 group-hover/stars:scale-110 transition-transform">
+                {"★".repeat(Math.floor(p.rating))}
+                {p.rating % 1 !== 0 && "½"}
+              </div>
+              <span className="text-sm font-bold text-gray-400 group-hover/stars:text-blue-600 transition-colors underline decoration-gray-200">
+                {p.opiniones.toLocaleString()} Opiniones
+              </span>
+            </a>
 
-            <a 
-              href={p.linkAmazon} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-4xl font-black text-blue-600 mb-8 hover:text-blue-700 transition-colors inline-block"
-            >
+            <a href={p.linkAmazon} target="_blank" rel="noopener noreferrer" className="text-4xl font-black text-blue-600 mb-8 hover:text-blue-700 transition-colors inline-block">
               {p.precio} <span className="text-lg font-normal text-gray-400">→</span>
             </a>
 
@@ -66,17 +57,9 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
             </div>
 
             <div className="space-y-4">
-              <a 
-                href={p.linkAmazon} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full block bg-gray-900 text-white text-center font-bold py-5 rounded-2xl shadow-xl hover:bg-blue-600 transition-all transform active:scale-95"
-              >
+              <a href={p.linkAmazon} target="_blank" rel="noopener noreferrer" className="w-full block bg-gray-900 text-white text-center font-bold py-5 rounded-2xl shadow-xl hover:bg-blue-600 transition-all transform active:scale-95">
                 COMPRAR EN AMAZON
               </a>
-              <p className="text-center text-[10px] text-gray-400 uppercase tracking-widest">
-                Envío rápido y devoluciones gratuitas con Amazon Prime
-              </p>
             </div>
           </div>
         </div>
