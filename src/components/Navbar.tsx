@@ -2,15 +2,19 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center text-white font-bold">H</div>
-          <span className="text-lg font-bold tracking-tight text-slate-900">hogar<span className="text-brand">conectado</span></span>
+        <Link href="/" className="text-xl font-black tracking-tighter text-blue-600 italic">
+          HOGAR<span className="text-gray-900">CONECTADO</span>
         </Link>
-        <div className="flex gap-4">
-          <Link href="/#productos" className="text-sm font-bold text-brand">Catálogo</Link>
+        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+          <Link href="/" className="hover:text-blue-600 transition-colors">Inicio</Link>
+          <Link href="#ofertas" className="hover:text-blue-600 transition-colors">Ofertas</Link>
+          <Link href="/aviso-legal" className="hover:text-blue-600 transition-colors">Aviso Legal</Link>
         </div>
+        <button className="bg-gray-900 text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-blue-600 transition-all">
+          Suscripcción
+        </button>
       </div>
     </nav>
   );
