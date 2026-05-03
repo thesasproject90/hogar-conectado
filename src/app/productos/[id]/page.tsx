@@ -8,7 +8,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
   if (!p) notFound();
 
-  // Filtrar 3 productos relacionados (que no sean el actual)
+  // Filtrar 3 productos relacionados
   const relacionados = productos
     .filter((prod) => prod.id !== id)
     .slice(0, 3);
@@ -21,17 +21,15 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         </Link>
         
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 mb-12">
-          {/* Lado Imagen */}
           <div className="relative bg-gray-100 p-8 flex items-center justify-center">
             {p.esTop && (
               <span className="absolute top-4 left-4 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                 Más vendido
               </span>
             )}
-            <img src={p.imagenUrl} alt={p.nombre} className="rounded-xl shadow-2xl max-h-96 object-cover" />
+            <img src={p.imagenUrl} alt={p.nombre} className="rounded-xl shadow-lg max-h-96 object-contain mix-blend-multiply" />
           </div>
 
-          {/* Lado Texto */}
           <div className="p-8 md:p-12 flex flex-col">
             <h1 className="text-3xl font-extrabold text-gray-900 mb-2">{p.nombre}</h1>
             
@@ -39,51 +37,34 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
               <div className="flex text-yellow-400 text-lg">
                 {"★".repeat(Math.floor(p.rating))}{"☆".repeat(5 - Math.floor(p.rating))}
               </div>
-              <span className="text-sm font-medium text-gray-500">({p.opiniones} valoraciones)</span>
+              <span className="text-sm font-medium text-gray-500">({p.opiniones.toLocaleString()} opiniones)</span>
             </div>
 
             <div className="text-4xl font-black text-blue-600 mb-6">
               {p.precio}
             </div>
 
-            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8">
-              <p className="text-blue-800 text-sm italic leading-relaxed">
-                {p.descripcion}
-              </p>
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 text-blue-800 text-sm leading-relaxed">
+              {p.descripcion}
             </div>
 
             <div className="space-y-4">
+              {/* ENLACE LIMPIO: Aseguramos que abra en pestaña nueva */}
               <a 
                 href={p.linkAmazon} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-full block bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white text-center font-bold py-4 rounded-xl shadow-lg transform transition active:scale-95"
               >
-                Ver precio en Amazon
+                Ver en Amazon.es
               </a>
               <div className="flex items-center justify-center gap-2 text-xs text-green-600 font-bold">
                 <span className="bg-blue-600 text-white px-1 rounded">Prime</span>
-                Envío gratuito y devoluciones fáciles
+                Envío gratuito disponible
               </div>
             </div>
           </div>
         </div>
-
-        {/* Sección de Productos Relacionados */}
-        {relacionados.length > 0 && (
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">También te puede interesar</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {relacionados.map((rel) => (
-                <Link key={rel.id} href={`/productos/${rel.id}`} className="group bg-white p-4 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                  <img src={rel.imagenUrl} alt={rel.nombre} className="w-full h-40 object-cover rounded-xl mb-4 group-hover:opacity-90" />
-                  <h4 className="font-bold text-gray-900 text-sm line-clamp-1">{rel.nombre}</h4>
-                  <p className="text-blue-600 font-bold text-sm mt-1">{rel.precio}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </main>
   );
