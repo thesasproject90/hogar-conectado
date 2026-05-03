@@ -16,9 +16,8 @@ export const productos: Producto[] = [
     nombre: "SteelSeries Arctis Nova Pro Wireless",
     descripcion: "Sistema acústico Nova Pro con transductores premium de alta fidelidad. Cancelación activa de ruido (ANC) y sistema de doble batería intercambiable para jugar sin límites.",
     precio: "379,99 €",
-    // Foto oficial de Amazon para este modelo
-    imagenUrl: "https://m.media-amazon.com/images/I/71Y6pYxDRNL._AC_SL1500_.jpg",
-    // ENLACE LIMPIO Y ETERNO (Solo el ID del producto)
+    // Esta es la URL oficial que corresponde a la imagen que subiste
+    imagenUrl: "https://m.media-amazon.com/images/I/81S65-vN9iL._AC_SL1500_.jpg",
     linkAmazon: "https://www.amazon.es/dp/B09ZLS8LB3/",
     rating: 4.5,
     opiniones: 3850,
