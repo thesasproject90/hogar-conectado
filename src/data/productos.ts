@@ -190,5 +190,17 @@ export const productos: Producto[] = [
     imagenUrl: "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?q=80&w=600&auto=format&fit=crop",
     linkAmazon: "https://www.amazon.es/dp/B08F56TWSJ?tag=TU_TAG-21",
     rating: 4.6, opiniones: 11200, esTop: false
+  },
+  {
+    id: "cosori-smart-airfryer",
+    nombre: "COSORI Freidora de Aire Inteligente",
+    descripcion: "Cocina de forma saludable controlando todo desde tu móvil. 5.5L de capacidad y compatible con Alexa.",
+    precio: "139,99 €",
+    imagenUrl: "https://images.unsplash.com/photo-1626074353765-517a681e40be?q=80&w=600&auto=format&fit=crop",
+    linkAmazon: "https://www.amazon.es/dp/B089269YGR?tag=TU_TAG-21",
+    rating: 4.7,
+    opiniones: 95000,
+    esTop: true
   }
+
 ];
