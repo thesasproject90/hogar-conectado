@@ -16,7 +16,7 @@ export const productos: Producto[] = [
     nombre: "Echo Dot (5.ª gen) con Alexa",
     descripcion: "El altavoz inteligente más vendido. Sonido potente y control total de tu hogar por voz.",
     precio: "64,99 €",
-    imagenUrl: "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?q=80&w=600&auto=format&fit=crop",
+    imagenUrl: "https://m.media-amazon.com/images/I/71Y6G67fSXL._AC_SL1500_.jpg",
     linkAmazon: "https://www.amazon.es/dp/B09B8W5FW7?tag=TU_TAG-21",
     rating: 4.8, opiniones: 25400, esTop: true
   },
@@ -25,7 +25,7 @@ export const productos: Producto[] = [
     nombre: "TP-Link Tapo P110 (Control Consumo)",
     descripcion: "Enchufe inteligente que monitoriza el consumo de energía en tiempo real. Ahorra en tu factura de luz.",
     precio: "14,90 €",
-    imagenUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=600&auto=format&fit=crop",
+    imagenUrl: "https://m.media-amazon.com/images/I/51f9Ym9-8XL._AC_SL1000_.jpg",
     linkAmazon: "https://www.amazon.es/dp/B097SBCS38?tag=TU_TAG-21",
     rating: 4.7, opiniones: 12100, esTop: true
   },
@@ -43,7 +43,7 @@ export const productos: Producto[] = [
     nombre: "Ring Video Doorbell Wired",
     descripcion: "Timbre con vídeo HD para que sepas quién llama a tu puerta desde cualquier lugar mediante tu móvil.",
     precio: "59,99 €",
-    imagenUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=600&auto=format&fit=crop",
+    imagenUrl: "https://m.media-amazon.com/images/I/51f9Ym9-8XL._AC_SL1000_.jpg",
     linkAmazon: "https://www.amazon.es/dp/B08CK632CH?tag=TU_TAG-21",
     rating: 4.5, opiniones: 18900, esTop: true
   },
@@ -88,7 +88,7 @@ export const productos: Producto[] = [
     nombre: "Nuki Smart Lock Pro",
     descripcion: "La cerradura inteligente definitiva. Abre tu puerta sin llaves y controla los accesos.",
     precio: "279,00 €",
-    imagenUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=600&auto=format&fit=crop",
+    imagenUrl: "https://m.media-amazon.com/images/I/51f9Ym9-8XL._AC_SL1000_.jpg",
     linkAmazon: "https://www.amazon.es/dp/B09M3Y8L5B?tag=TU_TAG-21",
     rating: 4.6, opiniones: 5200, esTop: false
   },
@@ -142,7 +142,7 @@ export const productos: Producto[] = [
     nombre: "BroadLink RM4 Mini",
     descripcion: "Mando universal WiFi. Controla tu aire acondicionado y TV antiguos desde el móvil.",
     precio: "25,99 €",
-    imagenUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=600&auto=format&fit=crop",
+    imagenUrl: "https://m.media-amazon.com/images/I/51f9Ym9-8XL._AC_SL1000_.jpg",
     linkAmazon: "https://www.amazon.es/dp/B083L89WPR?tag=TU_TAG-21",
     rating: 4.4, opiniones: 14000, esTop: false
   },
@@ -169,7 +169,7 @@ export const productos: Producto[] = [
     nombre: "Shelly 1 Relé WiFi",
     descripcion: "El relé más pequeño para automatizar interruptores de luz existentes detrás de la pared.",
     precio: "18,90 €",
-    imagenUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=600&auto=format&fit=crop",
+    imagenUrl: "https://m.media-amazon.com/images/I/51f9Ym9-8XL._AC_SL1000_.jpg",
     linkAmazon: "https://www.amazon.es/dp/B07G33LNDY?tag=TU_TAG-21",
     rating: 4.7, opiniones: 7500, esTop: true
   },
