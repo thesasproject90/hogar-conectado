@@ -8,14 +8,19 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
   if (!p) notFound();
 
+  // Filtrar 3 productos relacionados (que no sean el actual)
+  const relacionados = productos
+    .filter((prod) => prod.id !== id)
+    .slice(0, 3);
+
   return (
     <main className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-5xl mx-auto">
-        <Link href="/" className="text-gray-500 hover:text-blue-600 transition-colors mb-6 inline-flex items-center gap-2">
+        <Link href="/" className="text-gray-500 hover:text-blue-600 transition-colors mb-6 inline-flex items-center gap-2 text-sm font-medium">
           <span>←</span> Volver al catálogo
         </Link>
         
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+        <div className="bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 mb-12">
           {/* Lado Imagen */}
           <div className="relative bg-gray-100 p-8 flex items-center justify-center">
             {p.esTop && (
@@ -30,7 +35,6 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           <div className="p-8 md:p-12 flex flex-col">
             <h1 className="text-3xl font-extrabold text-gray-900 mb-2">{p.nombre}</h1>
             
-            {/* Estrellas y Opiniones */}
             <div className="flex items-center gap-2 mb-6">
               <div className="flex text-yellow-400 text-lg">
                 {"★".repeat(Math.floor(p.rating))}{"☆".repeat(5 - Math.floor(p.rating))}
@@ -64,6 +68,22 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             </div>
           </div>
         </div>
+
+        {/* Sección de Productos Relacionados */}
+        {relacionados.length > 0 && (
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">También te puede interesar</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {relacionados.map((rel) => (
+                <Link key={rel.id} href={`/productos/${rel.id}`} className="group bg-white p-4 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                  <img src={rel.imagenUrl} alt={rel.nombre} className="w-full h-40 object-cover rounded-xl mb-4 group-hover:opacity-90" />
+                  <h4 className="font-bold text-gray-900 text-sm line-clamp-1">{rel.nombre}</h4>
+                  <p className="text-blue-600 font-bold text-sm mt-1">{rel.precio}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );
