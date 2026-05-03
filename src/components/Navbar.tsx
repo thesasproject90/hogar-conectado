@@ -2,15 +2,18 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black tracking-tighter text-blue-600 italic">
-          HOGAR<span className="text-gray-900">CONECTADO</span>
+    <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-slate-100">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <Link href="/" className="group flex items-center gap-2">
+          <div className="w-10 h-10 bg-brand rounded-full flex items-center justify-center text-white font-black transition-transform group-hover:scale-110">H</div>
+          <span className="text-xl font-black tracking-tighter uppercase">hogar<span className="text-brand">conectado</span></span>
         </Link>
-        <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
-          <Link href="/" className="hover:text-blue-600 transition-colors">Inicio</Link>
-          <Link href="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
-          <Link href="/aviso-legal" className="text-xs text-gray-400 hover:text-blue-600 transition-colors uppercase">Legal</Link>
+        
+        <div className="hidden md:flex gap-10 items-center text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+          <Link href="/#categorias" className="hover:text-brand transition-colors">Ambientes</Link>
+          <Link href="/#productos" className="hover:text-brand transition-colors">Selección</Link>
+          <Link href="/blog" className="hover:text-brand transition-colors">Journal</Link>
+          <Link href="/#faq" className="bg-slate-900 text-white px-6 py-3 rounded-full hover:bg-brand transition-all">Soporte</Link>
         </div>
       </div>
     </nav>

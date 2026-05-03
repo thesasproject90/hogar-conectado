@@ -1,149 +1,101 @@
 import { productos } from '../data/productos';
 import Navbar from '../components/Navbar';
+import Newsletter from '../components/Newsletter';
 import Link from 'next/link';
 
 export default function Home() {
+  const categorias = [
+    { name: 'Workplace', img: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=800&auto=format&fit=crop' },
+    { name: 'Living Room', img: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=800&auto=format&fit=crop' },
+    { name: 'Kitchen', img: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop' }
+  ];
+
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navbar />
       
-      {/* 1. HERO EDITORIAL */}
-      <section className="pt-44 pb-24 px-6 bg-[#fcfcfc]">
+      {/* HERO EDITORIAL */}
+      <section className="pt-44 pb-24 px-6">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-[12vw] md:text-[9vw] leading-[0.85] tracking-tighter font-light">
             Essential <br/>
             <span className="font-black text-brand italic">Technology.</span>
           </h1>
-          <div className="mt-12 flex flex-col md:flex-row justify-between items-end gap-8">
-            <p className="text-xl md:text-2xl max-w-xl text-slate-500 font-medium leading-tight">
-              Una selección curada de objetos que definen el hogar del futuro. Sin ruido, solo excelencia.
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* 2. SECCIÓN DESTACADA (FEATURED FOCUS) */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative h-[70vh] w-full overflow-hidden rounded-sm group">
-            <img 
-              src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop" 
-              alt="Hogar minimalista" 
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-            />
-            <div className="absolute inset-0 bg-black/20 flex flex-col justify-end p-8 md:p-16">
-              <span className="text-white text-xs font-black uppercase tracking-[0.4em] mb-4">Interior Focus</span>
-              <h2 className="text-white text-4xl md:text-6xl font-light tracking-tighter max-w-2xl">
-                La armonía perfecta entre <span className="font-black italic">estética y función.</span>
-              </h2>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. MANIFIESTO AZUL */}
-      <section className="py-32 px-6 bg-brand text-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <h2 className="text-4xl md:text-7xl font-bold tracking-tighter leading-none">
-            01<br/>No buscamos gadgets.<br/>Buscamos soluciones.
-          </h2>
-          <div className="space-y-8 text-blue-100 text-xl font-light leading-relaxed">
-            <p>Filtramos la tecnología que realmente aporta valor a tu espacio vital. Analizamos la arquitectura del software y la pureza del hardware.</p>
-            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-blue-400/30">
-              <div>
-                <span className="block font-black text-white text-3xl italic tracking-tighter">+500</span>
-                <span className="text-sm uppercase font-bold tracking-widest text-blue-200">Horas de Test</span>
-              </div>
-              <div>
-                <span className="block font-black text-white text-3xl italic tracking-tighter">100%</span>
-                <span className="text-sm uppercase font-bold tracking-widest text-blue-200">Independencia</span>
+      {/* 1. CATEGORÍAS (AMBIFORMAS) */}
+      <section id="categorias" className="max-w-7xl mx-auto px-6 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {categorias.map((cat) => (
+            <div key={cat.name} className="group relative h-64 overflow-hidden rounded-sm cursor-pointer">
+              <img src={cat.img} alt={cat.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <h3 className="text-white font-black uppercase tracking-[0.3em] text-xs">{cat.name}</h3>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* 4. THE SELECTION (CORREGIDO EL ÍNDICE /01, /02...) */}
-      <section id="productos" className="max-w-7xl mx-auto px-6 py-32">
-        <div className="mb-20 flex justify-between items-baseline border-b border-slate-100 pb-8">
-          <h2 className="text-sm font-black uppercase tracking-[0.3em] text-slate-400">The 2026 Collection</h2>
-          <span className="text-sm font-medium italic text-slate-400">{productos.length} Selected Objects</span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+      {/* 2. THE SELECTION (PRODUCTOS) */}
+      <section id="productos" className="max-w-7xl mx-auto px-6 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {productos.map((p, index) => (
             <article key={p.id} className="group">
-              <Link href={`/productos/${p.id}`} className="block aspect-[4/5] bg-[#f5f5f5] overflow-hidden relative rounded-sm">
-                <img 
-                  src={p.imagenUrl} 
-                  alt={p.nombre} 
-                  className="w-full h-full object-contain p-12 transition-transform duration-1000 group-hover:scale-110" 
-                />
+              <Link href={`/productos/${p.id}`} className="block aspect-[4/5] bg-[#f5f5f5] overflow-hidden relative">
+                <img src={p.imagenUrl} alt={p.nombre} className="w-full h-full object-contain p-12 transition-transform duration-1000 group-hover:scale-110" />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="reveal-button bg-white text-black px-8 py-4 font-black text-[10px] tracking-[0.2em] uppercase shadow-2xl">
-                    View Object
-                  </div>
+                  <div className="bg-white text-black px-8 py-4 font-black text-[10px] tracking-[0.2em] uppercase">Analizar</div>
                 </div>
               </Link>
-
-              <div className="mt-8">
-                <div className="flex justify-between items-start mb-4">
-                  <Link href={`/productos/${p.id}`}>
-                    <h3 className="text-3xl font-bold tracking-tighter group-hover:text-brand transition-colors leading-none">
-                      {p.nombre}
-                    </h3>
-                  </Link>
-                  {/* AQUÍ LA CORRECCIÓN: Muestra /01, /02, etc basándose en el orden */}
-                  <span className="text-xl font-black tracking-tighter text-slate-300">
-                    /{index + 1 < 10 ? `0${index + 1}` : index + 1}
-                  </span>
-                </div>
-                <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-2">
-                  {p.descripcion}
-                </p>
-                <div className="flex items-center gap-6">
-                  <a href={p.linkAmazon} target="_blank" className="text-[10px] font-black uppercase tracking-widest text-brand border-b-2 border-brand pb-1">
-                    Check Price
-                  </a>
-                  <Link href={`/productos/${p.id}`} className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-black">
-                    Full Review
-                  </Link>
-                </div>
+              <div className="mt-6 flex justify-between items-start">
+                <h3 className="text-xl font-bold tracking-tighter uppercase">{p.nombre}</h3>
+                <span className="text-slate-300 font-black italic">/0{index + 1}</span>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      {/* 5. NEWSLETTER */}
-      <section className="py-40 px-6 bg-[#0a0a0a] text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="text-brand font-bold uppercase tracking-[0.4em] text-[10px]">The Journal</span>
-          <h2 className="text-4xl md:text-7xl font-light tracking-tighter mt-8 mb-12">
-            Suscríbete a la <br/><span className="font-black italic">curación semanal.</span>
-          </h2>
-          <form className="flex flex-col md:flex-row gap-4 justify-center">
-            <input 
-              type="email" 
-              placeholder="EMAIL ADDRESS" 
-              className="bg-transparent border-b border-slate-700 px-4 py-4 w-full md:w-96 focus:outline-none focus:border-brand text-center uppercase text-xs tracking-widest"
-            />
-            <button className="bg-white text-black px-12 py-4 font-black text-[10px] uppercase tracking-widest hover:bg-brand hover:text-white transition-all">
-              Join
-            </button>
-          </form>
+      {/* 3. COMPARATIVA RÁPIDA (Simplificada) */}
+      <section className="py-24 bg-slate-900 text-white px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-black tracking-tighter mb-12 uppercase italic">Top vs Entry Level</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-800 border border-slate-800">
+            <div className="bg-slate-900 p-12">
+              <span className="text-brand font-bold uppercase tracking-widest text-[10px]">Best Performance</span>
+              <h4 className="text-2xl font-bold mt-4">Arctis Nova Pro</h4>
+              <p className="text-slate-400 mt-4 text-sm">La cumbre del audio inalámbrico. Sin latencia, sin compromisos.</p>
+            </div>
+            <div className="bg-slate-900 p-12 text-slate-300">
+              <span className="text-slate-500 font-bold uppercase tracking-widest text-[10px]">Best Value</span>
+              <h4 className="text-2xl font-bold mt-4">Logitech MX Master</h4>
+              <p className="text-slate-500 mt-4 text-sm">Ergonomía perfecta para jornadas interminables de trabajo.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <footer className="py-12 px-6 bg-[#0a0a0a] border-t border-slate-900">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500">
-          <div>Hogar Conectado © 2026</div>
-          <div className="flex gap-12 text-slate-500">
-            <Link href="/" className="hover:text-white">Index</Link>
-            <Link href="/blog" className="hover:text-white">Journal</Link>
-            <Link href="/aviso-legal" className="hover:text-white">Legal</Link>
+      {/* 4. FAQ (PREGUNTAS) */}
+      <section id="faq" className="max-w-3xl mx-auto px-6 py-32">
+        <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 mb-12 text-center">Common Questions</h2>
+        <div className="space-y-12">
+          <div>
+            <h4 className="font-bold text-lg mb-2 tracking-tight">¿Son análisis pagados?</h4>
+            <p className="text-slate-500 text-sm italic">No. Compramos o solicitamos unidades de prueba sin compromiso editorial. Nuestra opinión es libre.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-lg mb-2 tracking-tight">¿Cómo funcionan los enlaces?</h4>
+            <p className="text-slate-500 text-sm italic">Al comprar desde nuestros links, recibimos una pequeña comisión de Amazon que ayuda a mantener este Journal vivo.</p>
           </div>
         </div>
+      </section>
+
+      <Newsletter />
+
+      <footer className="py-20 px-6 bg-white border-t border-slate-100 text-center">
+        <div className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">Hogar Conectado Journal © 2026</div>
       </footer>
     </main>
   );
