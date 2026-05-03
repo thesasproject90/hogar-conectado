@@ -1,11 +1,17 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand: #0052FF;
+}
+
 :root {
-  --brand: #0052FF;
+  --foreground: #0f172a;
+  --background: #ffffff;
 }
 
 body {
-  background: white;
-  color: #0f172a;
+  background: var(--background);
+  color: var(--foreground);
   font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
