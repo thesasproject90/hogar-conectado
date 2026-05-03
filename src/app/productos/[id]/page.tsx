@@ -1,64 +1,42 @@
-'use client';
-import { productos } from '../../../../src/data/productos';
+import { productos } from '../../../data/productos';
 import { notFound } from 'next/navigation';
+import Navbar from '../../../components/Navbar';
 import Link from 'next/link';
-import { useState, use } from 'react';
-import Navbar from '../../../../src/components/Navbar';
 
-export default function Page({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
-  const p = productos.find((prod) => prod.id === id);
-  const [isZoomed, setIsZoomed] = useState(false);
-
+export default async function ProductoPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const p = productos.find((x) => x.id === id);
   if (!p) notFound();
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white text-slate-900">
       <Navbar />
-      
-      {isZoomed && (
-        <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out" onClick={() => setIsZoomed(false)}>
-          <img src={p.imagenUrl} alt={p.nombre} className="max-w-full max-h-full object-contain" />
-        </div>
-      )}
-
-      <div className="max-w-6xl mx-auto pt-28 pb-20 px-4">
-        <Link href="/" className="text-gray-400 hover:text-blue-600 transition-colors mb-8 inline-flex items-center gap-2 text-sm">
-          ← Volver al catálogo
-        </Link>
+      <div className="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+        <Link href="/" className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand">← Volver</Link>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div className="relative group cursor-zoom-in" onClick={() => setIsZoomed(true)}>
-            <div className="bg-gray-50 rounded-[2rem] p-8 flex items-center justify-center border border-gray-100 overflow-hidden">
-              <img src={p.imagenUrl} alt={p.nombre} className="max-h-[500px] object-contain transition-transform duration-500 group-hover:scale-105" />
-            </div>
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="bg-slate-50 p-12 rounded-sm overflow-hidden group">
+            <img src={p.imagenUrl} alt={p.nombre} className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-110" />
           </div>
-          <div className="flex flex-col">
-            <h1 className="text-4xl font-black text-gray-900 mb-4 leading-tight">{p.nombre}</h1>
-            
-            <a href={p.linkOpiniones} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 mb-6 group/stars">
-              <div className="flex text-yellow-400 group-hover/stars:scale-110 transition-transform">
-                {"★".repeat(Math.floor(p.rating))}
-                {p.rating % 1 !== 0 && "½"}
-              </div>
-              <span className="text-sm font-bold text-gray-400 group-hover/stars:text-blue-600 transition-colors underline decoration-gray-200">
-                {p.opiniones.toLocaleString()} Opiniones
-              </span>
-            </a>
-
-            <a href={p.linkAmazon} target="_blank" rel="noopener noreferrer" className="text-4xl font-black text-blue-600 mb-8 hover:text-blue-700 transition-colors inline-block">
-              {p.precio} <span className="text-lg font-normal text-gray-400">→</span>
-            </a>
-
-            <div className="prose prose-blue mb-10">
-              <p className="text-gray-500 text-lg leading-relaxed italic border-l-4 border-blue-100 pl-6">
-                {p.descripcion}
-              </p>
+          
+          <div>
+            <div className="flex items-center gap-4 mb-6">
+               <span className="text-brand font-bold uppercase tracking-widest text-[10px]">{p.categoria}</span>
+               <div className="flex text-yellow-400 text-sm">
+                 {"★".repeat(Math.floor(p.rating))}
+                 {p.rating % 1 !== 0 && "½"}
+               </div>
             </div>
-
-            <div className="space-y-4">
-              <a href={p.linkAmazon} target="_blank" rel="noopener noreferrer" className="w-full block bg-gray-900 text-white text-center font-bold py-5 rounded-2xl shadow-xl hover:bg-blue-600 transition-all transform active:scale-95">
-                COMPRAR EN AMAZON
+            
+            <h1 className="text-5xl font-black tracking-tighter uppercase mb-6">{p.nombre}</h1>
+            <p className="text-xl text-slate-500 leading-relaxed mb-10 font-light">{p.descripcion}</p>
+            
+            <div className="flex flex-col gap-4">
+              <a href={p.linkAmazon} target="_blank" className="bg-brand text-white text-center py-5 font-black uppercase tracking-widest text-xs hover:bg-black transition-all">
+                Comprar por {p.precio}
+              </a>
+              <a href={p.linkOpiniones} target="_blank" className="border border-slate-200 text-center py-5 font-black uppercase tracking-widest text-[10px] hover:bg-slate-50 transition-all">
+                Leer opiniones certificadas
               </a>
             </div>
           </div>
