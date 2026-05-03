@@ -15,7 +15,7 @@ export default function Home() {
     <main className="min-h-screen bg-white text-slate-900">
       <Navbar />
       
-      <section className="pt-44 pb-24 px-6 max-w-7xl mx-auto text-center md:text-left">
+      <section className="pt-44 pb-24 px-6 max-w-7xl mx-auto">
         <h1 className="text-[12vw] md:text-[9vw] leading-[0.85] tracking-tighter font-light">
           Tecnología <br/><span className="font-black text-brand italic">Esencial.</span>
         </h1>
@@ -26,8 +26,8 @@ export default function Home() {
           {categorias.map((cat) => (
             <Link key={cat.slug} href={`/categorias/${cat.slug}`} className="group relative h-64 overflow-hidden rounded-sm block bg-slate-100">
               <img src={cat.img} alt={cat.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                <h3 className="text-white font-black uppercase tracking-[0.3em] text-xs pointer-events-none">{cat.name}</h3>
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center border border-white/10">
+                <h3 className="text-white font-black uppercase tracking-[0.3em] text-xs">{cat.name}</h3>
               </div>
             </Link>
           ))}
@@ -38,18 +38,25 @@ export default function Home() {
 
       <section id="productos" className="max-w-7xl mx-auto px-6 py-32 border-t border-slate-100">
         <div className="mb-20 flex justify-between items-baseline">
-          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">La Selección Completa</h2>
+          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Selección Journal</h2>
           <span className="text-xs italic text-slate-400">{productos.length} Objetos</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {productos.map((p, index) => (
             <article key={p.id} className="group">
-              <Link href={`/productos/${p.id}`} className="block aspect-[4/5] bg-[#f5f5f5] overflow-hidden relative">
-                <img src={p.imagenUrl} alt={p.nombre} className="w-full h-full object-contain p-12 transition-transform duration-1000 group-hover:scale-110" />
+              <Link href={`/productos/${p.id}`} className="block aspect-square bg-[#F9F9F9] border border-slate-50 overflow-hidden relative">
+                <img 
+                  src={p.imagenUrl} 
+                  alt={p.nombre} 
+                  className="w-full h-full object-contain p-16 mix-blend-multiply transition-transform duration-1000 group-hover:scale-110" 
+                />
               </Link>
-              <div className="mt-8 flex justify-between items-start">
-                <h3 className="text-xl font-bold tracking-tighter uppercase leading-none">{p.nombre}</h3>
-                <span className="text-slate-200 font-black italic text-2xl leading-none">/0{index + 1}</span>
+              <div className="mt-8 flex justify-between items-end">
+                <div>
+                   <span className="text-[10px] font-black text-brand uppercase tracking-widest">{p.categoria}</span>
+                   <h3 className="text-2xl font-bold tracking-tighter uppercase mt-2">{p.nombre}</h3>
+                </div>
+                <span className="text-slate-200 font-black italic text-4xl leading-none">/0{index + 1}</span>
               </div>
             </article>
           ))}
@@ -57,10 +64,6 @@ export default function Home() {
       </section>
 
       <Newsletter />
-
-      <footer className="py-20 px-6 bg-white border-t border-slate-100 text-center text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
-        Hogar Conectado © 2026 — Edición Journal
-      </footer>
     </main>
   );
 }
