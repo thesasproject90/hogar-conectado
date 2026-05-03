@@ -8,12 +8,9 @@ export default function Navbar() {
           HOGAR<span className="text-gray-900">CONECTADO</span>
         </Link>
         <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
-          <Link href="/" className="hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 py-1">
-            Inicio
-          </Link>
-          <Link href="/aviso-legal" className="text-xs text-gray-400 hover:text-blue-600 transition-colors uppercase tracking-widest">
-            Aviso Legal
-          </Link>
+          <Link href="/" className="hover:text-blue-600 transition-colors">Inicio</Link>
+          <Link href="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
+          <Link href="/aviso-legal" className="text-xs text-gray-400 hover:text-blue-600 transition-colors uppercase">Legal</Link>
         </div>
       </div>
     </nav>
