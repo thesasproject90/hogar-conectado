@@ -19,7 +19,7 @@ export const productos: Producto[] = [
     precio: "Consultar precio",
     imagenUrl: "https://m.media-amazon.com/images/I/712X4tzCUrL._AC_SL1500_.jpg",
     linkAmazon: "https://www.amazon.es/dp/B09ZLS8LB3/",
-    linkOpiniones: "https://www.amazon.es/dp/B09ZLS8LB3/#customerReviews",
+    linkOpiniones: "https://www.amazon.es/reviews/B09ZLS8LB3/",
     rating: 4.5,
     opiniones: 3850,
     esTop: true
