@@ -1,26 +1,34 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Nueva Paleta de Marca */
+  --brand-blue: 0, 82, 255; /* #0052FF */
+  --text-primary: 15, 23, 42; /* #0F172A */
+  --bg-main: 248, 250, 252; /* #F8FAFC */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--text-primary));
+  background-color: rgb(var(--bg-main));
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utilidades personalizadas de marca */
+.bg-brand { background-color: rgb(var(--brand-blue)); }
+.text-brand { color: rgb(var(--brand-blue)); }
+.border-brand { border-color: rgb(var(--brand-blue)); }
+
+/* Gradiente de fondo ultra-suave */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 20%, rgba(var(--brand-blue), 0.03) 0%, rgba(255,255,255,0) 80%);
+  pointer-events: none;
+  z-index: -1;
 }
