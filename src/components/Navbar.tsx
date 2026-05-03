@@ -1,32 +1,39 @@
-import Link from 'next/link';
+'use client'
+import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          {/* LOGO SVG UNICO - HOGAR CONECTADO */}
-          <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-brand transition-transform group-hover:rotate-[-10deg]">
-            <path d="M25 20V80" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
-            <path d="M75 20V80" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
-            <path d="M25 50H75" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
-            <circle cx="25" cy="50" r="8" fill="white" stroke="currentColor" stroke-width="4"/>
-            <circle cx="75" cy="50" r="8" fill="white" stroke="currentColor" stroke-width="4"/>
-            <circle cx="50" cy="50" r="10" fill="currentColor"/>
-            <path d="M50 50L75 20M50 50L75 80" stroke="currentColor" stroke-width="3" stroke-dasharray="6 6"/>
-          </svg>
-          <span className="text-2xl font-black tracking-tighter text-gray-950">
-            hogar<span className="text-brand">conectado</span>
-          
-        </Link>
-        <div className="flex items-center gap-8 text-sm font-semibold text-gray-700">
-          <Link href="/" className="hover:text-brand transition-colors">Catálogo</Link>
-          <Link href="/blog" className="hover:text-brand transition-colors">Journal</Link>
-          <Link href="#productos" className="bg-brand text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gray-950 transition-all shadow-sm shadow-blue-200 hover:shadow-lg hover:shadow-gray-300 transform active:scale-95">
-            Explorar
+    <>
+      <nav className="fixed top-0 w-full z-50"
+        style={{ backgroundColor: 'var(--night)', borderBottom: '1px solid rgba(232,197,71,0.15)' }}>
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3 group">
+            <span className="font-display text-xl font-800 tracking-tighter leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+              <span style={{ color: 'var(--cream)' }}>HOGAR</span>
+              <span style={{ color: 'var(--amber)' }}>.</span>
+              <span style={{ color: 'var(--cream)', fontWeight: 300, fontSize: '0.9em' }}>conectado</span>
+            </span>
           </Link>
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="/" className="text-xs font-semibold uppercase tracking-widest transition-colors duration-300" style={{ color: 'var(--mist)', fontFamily: 'var(--font-display)' }}>Catálogo</Link>
+            <Link href="/blog" className="text-xs font-semibold uppercase tracking-widest transition-colors duration-300" style={{ color: 'var(--mist)', fontFamily: 'var(--font-display)' }}>Journal</Link>
+            <Link href="/#productos" className="btn-primary" style={{ padding: '0.6rem 1.4rem' }}>Ver productos</Link>
+          </div>
+          <button className="md:hidden flex flex-col gap-1.5 p-2" onClick={() => setOpen(!open)} aria-label="Menú">
+            <span className="block w-6 h-0.5 transition-all duration-300" style={{ backgroundColor: 'var(--amber)', transform: open ? 'rotate(45deg) translateY(8px)' : 'none' }} />
+            <span className="block w-6 h-0.5 transition-all duration-300" style={{ backgroundColor: 'var(--amber)', opacity: open ? 0 : 1 }} />
+            <span className="block w-6 h-0.5 transition-all duration-300" style={{ backgroundColor: 'var(--amber)', transform: open ? 'rotate(-45deg) translateY(-8px)' : 'none' }} />
+          </button>
         </div>
+      </nav>
+      <div className="fixed inset-0 z-40 flex flex-col justify-center items-center gap-10 md:hidden transition-all duration-500" style={{ backgroundColor: 'var(--night)', opacity: open ? 1 : 0, pointerEvents: open ? 'all' : 'none' }}>
+        <Link href="/" onClick={() => setOpen(false)} className="text-4xl font-display font-800 tracking-tighter transition-colors" style={{ fontFamily: 'var(--font-display)', color: 'var(--cream)' }}>Catálogo</Link>
+        <Link href="/blog" onClick={() => setOpen(false)} className="text-4xl font-display font-800 tracking-tighter transition-colors" style={{ fontFamily: 'var(--font-display)', color: 'var(--cream)' }}>Journal</Link>
+        <Link href="/#productos" onClick={() => setOpen(false)} className="btn-primary mt-4">Ver productos</Link>
       </div>
-    </nav>
-  );
+    </>
+  )
 }

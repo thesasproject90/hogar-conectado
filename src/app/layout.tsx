@@ -1,13 +1,16 @@
-import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import './globals.css'
 import CookieBanner from '../components/CookieBanner'
 
-const inter = Inter({ subsets: ['latin'] })
-
 export const metadata: Metadata = {
-  title: 'Hogar Conectado | Los mejores productos para tu hogar',
-  description: 'Análisis y selección de la mejor tecnología para tu casa.',
+  title: 'Hogar Conectado — Tecnología con criterio',
+  description: 'Selección editorial de los mejores dispositivos para tu hogar. Sin ruido, solo lo que merece la pena.',
+  openGraph: {
+    title: 'Hogar Conectado',
+    description: 'Tecnología seleccionada con criterio editorial.',
+    locale: 'es_ES',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -17,10 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={inter.className}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body>
         {children}
         <CookieBanner />
       </body>
     </html>
-  );
+  )
 }
