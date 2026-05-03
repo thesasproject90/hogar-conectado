@@ -1,65 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --night:   #1A1A2E;
-  --amber:   #E8C547;
-  --cream:   #F5F0E8;
-  --ink:     #2D2D2D;
-  --mist:    #E8E4DC;
-  --white:   #FFFFFF;
-  --font-display: 'Syne', sans-serif;
-  --font-body:    'Inter', sans-serif;
-  --radius-card: 4px;
-  --transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --brand-blue: #0052FF;
+  --bg-main: #FFFFFF;
+  --text-main: #0F172A;
 }
 
 body {
-  font-family: var(--font-body);
-  background-color: var(--cream);
-  color: var(--night);
+  color: var(--text-main);
+  background-color: var(--bg-main);
   -webkit-font-smoothing: antialiased;
 }
-.font-display { font-family: var(--font-display); }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
 
-.bg-night   { background-color: var(--night); }
-.bg-amber   { background-color: var(--amber); }
-.bg-cream   { background-color: var(--cream); }
-.text-night { color: var(--night); }
-.text-amber { color: var(--amber); }
+.bg-brand { background-color: var(--brand-blue); }
+.text-brand { color: var(--brand-blue); }
 
 .btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--night);
-  color: var(--cream);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.875rem 2rem;
-  border-radius: var(--radius-card);
-  transition: all var(--transition);
+  @apply bg-[#0052FF] text-white px-6 py-3 rounded-full font-bold hover:bg-black transition-all active:scale-95;
 }
-
-.badge {
-  display: inline-block;
-  background-color: var(--amber);
-  color: var(--night);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.65rem;
-  padding: 0.3rem 0.85rem;
-}
-
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-up { animation: fade-up 0.7s var(--transition) both; }
