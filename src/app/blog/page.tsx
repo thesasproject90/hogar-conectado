@@ -9,7 +9,7 @@ export default function BlogPage() {
           Journal <br/><span className="font-black text-brand italic">Edition.</span>
         </h1>
         <div className="py-20 border-t border-slate-100">
-          <p className="text-slate-400 italic uppercase tracking-[0.3em] text-[10px] font-black text-slate-300">
+          <p className="text-slate-400 italic uppercase tracking-[0.3em] text-[10px] font-black">
             Nuevas ediciones en preparación
           </p>
         </div>

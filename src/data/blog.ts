@@ -6,4 +6,5 @@ export interface Post {
   imagenUrl: string;
   categoria: string;
 }
+
 export const blogPosts: Post[] = [];
