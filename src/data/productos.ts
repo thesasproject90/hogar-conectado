@@ -7,7 +7,7 @@ export interface Producto {
   linkAmazon: string;
   linkOpiniones: string;
   categoria: 'trabajo' | 'salon' | 'cocina';
-  rating: number; // <--- Añadimos esta línea
+  rating: number; // Añadimos esto para que no de error
 }
 
 export const productos: Producto[] = [
@@ -20,7 +20,7 @@ export const productos: Producto[] = [
     linkAmazon: 'https://amzn.to/4bcLqgW',
     linkOpiniones: 'https://amzn.to/4bcLqgW',
     categoria: 'trabajo',
-    rating: 5 // <--- Y esta también
-  },
-  // Si tienes más productos abajo, asegúrate de añadirles el campo rating: 4.5, etc.
+    rating: 5 // Nota máxima
+  }
+  // Si tienes más productos, asegúrate de ponerles un rating (ej: 4.5 o 5)
 ];
