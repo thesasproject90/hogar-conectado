@@ -1,28 +1,36 @@
-import { posts } from '../../data/blog';
-import Link from 'next/link';
+import { blogPosts } from '../../data/blog';
 import Navbar from '../../components/Navbar';
+import Link from 'next/link';
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white text-slate-900">
       <Navbar />
-      <div className="max-w-5xl mx-auto pt-32 pb-20 px-4">
-        <h1 className="text-5xl font-black text-gray-900 mb-12 italic">BLOG_</h1>
-        <div className="grid gap-16">
-          {posts.map((post) => (
-            <Link href={`/blog/${post.id}`} key={post.id} className="group grid md:grid-cols-2 gap-8 items-center">
-              <div className="overflow-hidden rounded-3xl bg-gray-100 aspect-video">
-                <img src={post.imagen} alt={post.titulo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div>
-                <p className="text-blue-600 font-bold text-xs uppercase mb-2">{post.fecha}</p>
-                <h2 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">{post.titulo}</h2>
-                <p className="text-gray-500 leading-relaxed">{post.resumen}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
+      <section className="pt-44 pb-24 px-6 max-w-7xl mx-auto">
+        <h1 className="text-[12vw] md:text-[9vw] leading-[0.85] tracking-tighter font-light mb-20">
+          Journal <br/><span className="font-black text-brand italic">Edition.</span>
+        </h1>
+
+        {blogPosts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            {blogPosts.map((post) => (
+              <article key={post.id} className="group">
+                <div className="aspect-video bg-slate-100 overflow-hidden mb-8">
+                  <img src={post.imagenUrl} alt={post.titulo} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-brand">{post.categoria}</span>
+                <h2 className="text-3xl font-bold tracking-tighter uppercase mt-4 mb-4">{post.titulo}</h2>
+                <p className="text-slate-500 mb-6">{post.extracto}</p>
+                <Link href={`/blog/${post.id}`} className="inline-block border-b-2 border-slate-900 pb-1 font-black text-[10px] uppercase tracking-widest">Leer más</Link>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="py-20 border-t border-slate-100 text-center">
+            <p className="text-slate-400 italic uppercase tracking-[0.3em] text-xs font-black">Próximamente nuevas ediciones</p>
+          </div>
+        )}
+      </section>
     </main>
   );
 }
